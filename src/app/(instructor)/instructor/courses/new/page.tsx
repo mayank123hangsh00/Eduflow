@@ -126,7 +126,7 @@ export default function NewCoursePage() {
           />
           <p className="text-xs text-muted-foreground mt-1">
             <Sparkles className="w-3 h-3 inline mr-1 text-brand-400" />
-            Click "Generate with AI" for a Groq-generated description
+            Click &quot;Generate with AI&quot; for a Groq-generated description
           </p>
         </div>
 

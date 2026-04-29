@@ -9,7 +9,7 @@ async function main() {
   // Create demo users
   const hashedPass = await bcrypt.hash("demo1234", 12);
 
-  const admin = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: "admin@demo.com" },
     update: {},
     create: {
@@ -62,7 +62,7 @@ async function main() {
     },
   });
 
-  const aiCourse = await prisma.course.upsert({
+  await prisma.course.upsert({
     where: { id: "seed-course-ai-001" },
     update: {},
     create: {

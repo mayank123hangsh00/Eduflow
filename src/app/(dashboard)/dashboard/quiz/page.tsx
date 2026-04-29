@@ -77,6 +77,7 @@ export default function QuizPage() {
   const nextQuestion = () => {
     const newAnswers = [...state.answers, selectedAnswer ?? -1];
     if (state.currentQ + 1 >= state.questions.length) {
+      // eslint-disable-next-line react-hooks/purity
       const timeTaken = Math.round((Date.now() - state.startTime) / 1000);
       setState((s) => ({ ...s, answers: newAnswers, phase: "results", timeTaken }));
       saveAttempt(newAnswers, timeTaken);

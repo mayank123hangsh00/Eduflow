@@ -258,7 +258,7 @@ export default async function LandingPage() {
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, j) => <Star key={j} className="w-4 h-4 text-yellow-400 fill-yellow-400" />)}
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">&quot;{t.text}&quot;</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-brand-500/20 flex items-center justify-center font-bold text-brand-300">
                     {t.name[0]}
@@ -283,7 +283,7 @@ export default async function LandingPage() {
               Ready to <span className="gradient-text">level up?</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8 relative">
-              Join thousands of learners mastering new skills with AI. It's free to start.
+              Join thousands of learners mastering new skills with AI. It&apos;s free to start.
             </p>
             <Link href="/register" className="btn-primary text-lg px-10 py-4 relative">
               Get Started Free
