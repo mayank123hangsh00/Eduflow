@@ -20,6 +20,37 @@ This project was built as a demonstration of advanced full-stack capabilities fo
 
 ---
 
+## 📸 Platform Preview
+
+Here are some previews of the working platform in action:
+
+<details>
+<summary><b>1. Student Dashboard (Overview)</b></summary>
+<img src="screenshots/dashboard.png" width="100%" alt="Student Dashboard" />
+</details>
+
+<details>
+<summary><b>2. Enrolled Courses</b></summary>
+<img src="screenshots/courses.png" width="100%" alt="Enrolled Courses" />
+</details>
+
+<details>
+<summary><b>3. AI Quiz Generator UI</b></summary>
+<img src="screenshots/quiz-generator.png" width="100%" alt="AI Quiz Generator" />
+</details>
+
+<details>
+<summary><b>4. AI Quiz Grading & Explanations</b></summary>
+<img src="screenshots/quiz-results.png" width="100%" alt="AI Quiz Results" />
+</details>
+
+<details>
+<summary><b>5. Real-Time AI Study Assistant</b></summary>
+<img src="screenshots/study-assistant.png" width="100%" alt="AI Study Assistant" />
+</details>
+
+---
+
 ## ✨ Core Features
 
 ### 🔐 Granular Role-Based Access Control (RBAC)
