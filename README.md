@@ -24,30 +24,20 @@ This project was built as a demonstration of advanced full-stack capabilities fo
 
 Here are some previews of the working platform in action:
 
-<details>
-<summary><b>1. Student Dashboard (Overview)</b></summary>
+### 1. Student Dashboard (Overview)
 <img src="screenshots/1.png" width="100%" alt="Student Dashboard" />
-</details>
 
-<details>
-<summary><b>2. Enrolled Courses</b></summary>
+### 2. Enrolled Courses
 <img src="screenshots/2.png" width="100%" alt="Enrolled Courses" />
-</details>
 
-<details>
-<summary><b>3. AI Quiz Generator UI</b></summary>
+### 3. AI Quiz Generator UI
 <img src="screenshots/3.png" width="100%" alt="AI Quiz Generator" />
-</details>
 
-<details>
-<summary><b>4. AI Quiz Grading & Explanations</b></summary>
+### 4. AI Quiz Grading & Explanations
 <img src="screenshots/4.png" width="100%" alt="AI Quiz Results" />
-</details>
 
-<details>
-<summary><b>5. Real-Time AI Study Assistant</b></summary>
+### 5. Real-Time AI Study Assistant
 <img src="screenshots/5.png" width="100%" alt="AI Study Assistant" />
-</details>
 
 ---
 
