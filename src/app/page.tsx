@@ -2,13 +2,15 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import {
+  Rocket,
   Brain,
+  GraduationCap,
   Sparkles,
+  BookOpen,
   ArrowRight,
-  Zap,
-  Globe2,
-  Layers,
-  Fingerprint
+  Gamepad2,
+  Trophy,
+  Users
 } from "lucide-react";
 
 export default async function LandingPage() {
@@ -16,34 +18,49 @@ export default async function LandingPage() {
   if (session?.user) redirect("/dashboard");
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white/30 overflow-hidden relative">
-      {/* Absolute Noise Overlay */}
-      <div className="fixed inset-0 z-50 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+    <div className="min-h-screen bg-background overflow-hidden relative selection:bg-secondary/50">
+      {/* Animated Background Blobs */}
+      <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[80px] animate-blob z-0 pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-tertiary/20 rounded-full blur-[80px] animate-blob animation-delay-2000 z-0 pointer-events-none"></div>
 
-      {/* Insane Aurora Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-violet-600/20 blur-[120px] mix-blend-screen animate-aurora-1"></div>
-        <div className="absolute top-[20%] -right-[20%] w-[60vw] h-[60vw] rounded-full bg-cyan-500/20 blur-[120px] mix-blend-screen animate-aurora-2"></div>
-        <div className="absolute -bottom-[20%] left-[10%] w-[80vw] h-[80vw] rounded-full bg-fuchsia-600/20 blur-[150px] mix-blend-screen animate-aurora-3"></div>
+      {/* Floating Elements (Decorative) */}
+      <div className="absolute top-[20%] left-[10%] animate-float-slow z-0 pointer-events-none opacity-50">
+        <div className="w-16 h-16 bg-secondary border-3 border-border rounded-[2rem] shadow-[4px_4px_0_var(--border)] rotate-12 flex items-center justify-center">
+          <Sparkles className="w-8 h-8 text-border" />
+        </div>
+      </div>
+      <div className="absolute top-[30%] right-[15%] animate-float-fast z-0 pointer-events-none opacity-50">
+        <div className="w-20 h-20 bg-primary border-3 border-border rounded-[2rem] shadow-[4px_4px_0_var(--border)] -rotate-6 flex items-center justify-center">
+          <Brain className="w-10 h-10 text-white" />
+        </div>
+      </div>
+      <div className="absolute bottom-[20%] left-[20%] animate-float-slow z-0 pointer-events-none opacity-50">
+         <div className="w-14 h-14 bg-tertiary border-3 border-border rounded-full shadow-[4px_4px_0_var(--border)] rotate-45 flex items-center justify-center">
+          <Rocket className="w-6 h-6 text-white" />
+        </div>
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-full border border-white/10 bg-black/40 backdrop-blur-3xl supports-[backdrop-filter]:bg-black/20 shadow-2xl">
-        <div className="px-6 flex h-14 items-center justify-between">
+      <nav className="relative z-50 pt-6 px-6 max-w-7xl mx-auto">
+        <div className="h-20 bg-white border-3 border-border rounded-2xl shadow-[6px_8px_0_var(--border)] px-6 flex items-center justify-between animate-pop-in">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-              <Sparkles className="w-4 h-4 text-black" />
+            <div className="w-12 h-12 rounded-xl bg-primary border-2 border-border flex items-center justify-center shadow-[2px_2px_0_var(--border)] animate-wiggle">
+              <GraduationCap className="w-7 h-7 text-white" />
             </div>
-            <span className="font-bold text-sm tracking-widest uppercase">EduFlow</span>
+            <span className="font-extrabold text-2xl tracking-tight text-border">EduFlow</span>
           </div>
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#vision" className="text-xs font-semibold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Vision</a>
-            <a href="#engine" className="text-xs font-semibold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Engine</a>
-            <a href="#neural" className="text-xs font-semibold uppercase tracking-widest text-white/50 hover:text-white transition-colors">Neural</a>
+          
+          <div className="hidden md:flex items-center gap-8 font-bold text-border">
+            <a href="#how-it-works" className="hover:text-primary transition-colors hover:scale-105 transform">How it Works</a>
+            <a href="#features" className="hover:text-tertiary transition-colors hover:scale-105 transform">Features</a>
           </div>
+
           <div className="flex items-center gap-4">
-            <Link href="/login" className="text-xs font-bold uppercase tracking-widest text-white hover:text-white/70 transition-colors">
+            <Link href="/login" className="hidden sm:block font-bold text-border hover:text-primary transition-colors">
               Log In
+            </Link>
+            <Link href="/register" className="btn-edutech text-sm py-2 px-6">
+              Start Free
             </Link>
           </div>
         </div>
@@ -51,191 +68,131 @@ export default async function LandingPage() {
 
       <main className="relative z-10">
         {/* Hero Section */}
-        <section className="relative min-h-[100svh] flex flex-col items-center justify-center pt-20 px-6">
-          
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full animate-spin-slow pointer-events-none"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full animate-reverse-spin pointer-events-none"></div>
-          
-          <div className="text-center max-w-5xl mx-auto relative z-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-12 hover:bg-white/10 transition-colors cursor-pointer group">
-              <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white] group-hover:scale-150 transition-transform"></div>
-              <span className="text-xs font-bold tracking-widest uppercase text-white/80">LLaMA 3.3 Integrated</span>
+        <section className="pt-20 pb-32 px-6">
+          <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
+            <div className="tag-edutech mb-8 animate-pop-in" style={{ animationDelay: "0.1s" }}>
+              🎉 Learning just got an upgrade!
             </div>
             
-            <h1 className="text-[12vw] sm:text-[8vw] md:text-8xl font-black tracking-tighter leading-[0.85] mb-8">
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/30 drop-shadow-2xl">
-                LEARNING.
-              </span>
-              <br />
-              <span className="relative inline-block mt-4">
-                <span className="absolute -inset-2 bg-gradient-to-r from-violet-600 via-cyan-400 to-fuchsia-600 opacity-30 blur-2xl rounded-full"></span>
-                <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-cyan-300 to-fuchsia-400">
-                  REIMAGINED.
-                </span>
+            <h1 className="text-5xl sm:text-7xl md:text-[5.5rem] font-black tracking-tight text-border leading-[1.1] mb-8 animate-pop-in" style={{ animationDelay: "0.2s" }}>
+              Master any topic <br className="hidden md:block" />
+              <span className="relative inline-block mt-2">
+                <span className="absolute -inset-2 bg-secondary rounded-lg -rotate-2 border-3 border-border shadow-[4px_6px_0_var(--border)] z-[-1]"></span>
+                <span className="relative z-10 px-2 text-border">with AI magic!</span>
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-16 font-light leading-relaxed">
-              Step into the future of education. An immersive, AI-driven reality where courses adapt to you in real-time, powered by cognitive neural processing.
+            <p className="text-xl md:text-2xl font-semibold text-border/70 max-w-2xl mx-auto mb-12 animate-pop-in" style={{ animationDelay: "0.3s" }}>
+              EduFlow makes studying incredibly fun and interactive. Auto-generate quizzes, chat with your AI tutor, and track your progress!
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link href="/register" className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-black bg-white rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95">
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative flex items-center gap-2">
-                  ENTER THE SYSTEM <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-pop-in" style={{ animationDelay: "0.4s" }}>
+              <Link href="/register" className="btn-edutech text-xl py-4 px-10 group">
+                Jump In Now!
+                <Rocket className="w-6 h-6 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+              <Link href="#features" className="btn-edutech secondary text-xl py-4 px-10 group">
+                Explore Platform
+                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>
-
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce opacity-50">
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Scroll to initialize</span>
-            <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
-          </div>
         </section>
 
-        {/* Spatial UI Grid */}
-        <section id="vision" className="py-32 px-6 relative">
+        {/* Feature Cards Grid */}
+        <section id="features" className="py-24 px-6 bg-border">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col items-center text-center mb-24">
-              <h2 className="text-4xl md:text-6xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/20">
-                SPATIAL ARCHITECTURE
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Why you&apos;ll love EduFlow
               </h2>
+              <p className="text-xl text-white/80 font-bold">Everything you need to learn faster and better.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               
-              {/* Massive Bento Card 1 */}
-              <div className="md:col-span-8 relative rounded-[2rem] border border-white/10 bg-white/[0.02] backdrop-blur-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-duration-700"></div>
-                <div className="absolute top-8 left-8">
-                  <Brain className="w-10 h-10 text-white/50 mb-6 group-hover:text-violet-400 transition-colors duration-500" />
-                  <h3 className="text-3xl font-bold tracking-tight mb-4">Neural Grading Core</h3>
-                  <p className="text-white/50 max-w-sm leading-relaxed font-light">
-                    Groq&apos;s LPU inference engine evaluates student input instantly, providing multi-dimensional feedback without latency.
-                  </p>
+              {/* Feature 1 */}
+              <div className="card-edutech bg-white p-8 group">
+                <div className="w-16 h-16 rounded-2xl bg-primary border-3 border-border shadow-[4px_4px_0_var(--border)] flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:rotate-12 transition-all">
+                  <Brain className="w-8 h-8 text-white" />
                 </div>
-                {/* Decorative element */}
-                <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full border border-white/5 bg-white/[0.01] flex items-center justify-center">
-                   <div className="w-60 h-60 rounded-full border border-white/10 animate-spin-slow"></div>
-                </div>
+                <h3 className="text-2xl font-black text-border mb-4">Smart AI Quizzes</h3>
+                <p className="text-lg font-semibold text-border/70">
+                  Stop reading boring textbooks. Our AI instantly converts your modules into interactive quizzes that adapt to your skill level.
+                </p>
               </div>
 
-              {/* Bento Card 2 */}
-              <div className="md:col-span-4 relative rounded-[2rem] border border-white/10 bg-white/[0.02] backdrop-blur-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-duration-700"></div>
-                <div className="absolute top-8 left-8 right-8">
-                  <Fingerprint className="w-10 h-10 text-white/50 mb-6 group-hover:text-cyan-400 transition-colors duration-500" />
-                  <h3 className="text-2xl font-bold tracking-tight mb-3">Absolute Security</h3>
-                  <p className="text-white/50 leading-relaxed font-light text-sm">
-                    Military-grade JWT encryption. Your learning data is cryptographically sealed in our PostgreSQL vaults.
-                  </p>
+              {/* Feature 2 */}
+              <div className="card-edutech bg-white p-8 group">
+                <div className="w-16 h-16 rounded-2xl bg-secondary border-3 border-border shadow-[4px_4px_0_var(--border)] flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:-rotate-12 transition-all">
+                  <Gamepad2 className="w-8 h-8 text-border" />
                 </div>
+                <h3 className="text-2xl font-black text-border mb-4">Interactive Learning</h3>
+                <p className="text-lg font-semibold text-border/70">
+                  Learning shouldn&apos;t feel like a chore. Enjoy an interface that feels more like a game than a classroom.
+                </p>
               </div>
 
-              {/* Bento Card 3 */}
-              <div className="md:col-span-4 relative rounded-[2rem] border border-white/10 bg-white/[0.02] backdrop-blur-2xl overflow-hidden group">
-                 <div className="absolute inset-0 bg-gradient-to-bl from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-duration-700"></div>
-                 <div className="absolute bottom-8 left-8 right-8">
-                  <Globe2 className="w-10 h-10 text-white/50 mb-6 group-hover:text-fuchsia-400 transition-colors duration-500" />
-                  <h3 className="text-2xl font-bold tracking-tight mb-3">Edge Deployed</h3>
-                  <p className="text-white/50 leading-relaxed font-light text-sm">
-                    Zero-latency UI delivery. React Server Components stream the interface directly from nodes closest to you.
-                  </p>
+              {/* Feature 3 */}
+              <div className="card-edutech bg-white p-8 group">
+                <div className="w-16 h-16 rounded-2xl bg-tertiary border-3 border-border shadow-[4px_4px_0_var(--border)] flex items-center justify-center mb-6 group-hover:-translate-y-2 group-hover:rotate-12 transition-all">
+                  <Users className="w-8 h-8 text-white" />
                 </div>
-              </div>
-
-              {/* Bento Card 4 */}
-              <div className="md:col-span-8 relative rounded-[2rem] border border-white/10 bg-white/[0.02] backdrop-blur-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
-                <div className="h-full flex flex-col justify-end p-8">
-                  <Layers className="w-10 h-10 text-white/50 mb-6 group-hover:text-white transition-colors duration-500" />
-                  <h3 className="text-3xl font-bold tracking-tight mb-4">Hyper-Dimensional RBAC</h3>
-                  <p className="text-white/50 max-w-lg leading-relaxed font-light">
-                    Instructors, Students, and Admins exist in entirely separate interface dimensions. Perfect separation of concerns.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-black text-border mb-4">Role Based Worlds</h3>
+                <p className="text-lg font-semibold text-border/70">
+                  Whether you are an Instructor building courses or a Student exploring them, get a dashboard built perfectly for your needs.
+                </p>
               </div>
 
             </div>
           </div>
         </section>
 
-        {/* Code Visualization Interface */}
-        <section id="engine" className="py-32 px-6 overflow-hidden">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-            <div className="flex-1 space-y-8 relative z-10">
-              <h2 className="text-5xl font-black tracking-tighter">
-                THE CORE <br />
-                <span className="text-white/30">ALGORITHM.</span>
+        {/* Big CTA Section */}
+        <section className="py-32 px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="card-edutech bg-secondary p-12 md:p-20 text-center relative overflow-hidden">
+              {/* Decorative shapes inside CTA */}
+              <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary rounded-full border-3 border-border opacity-20"></div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-tertiary rounded-lg border-3 border-border rotate-45 opacity-20"></div>
+
+              <div className="w-24 h-24 mx-auto bg-white border-3 border-border rounded-full shadow-[4px_4px_0_var(--border)] flex items-center justify-center mb-8 animate-wiggle">
+                <Trophy className="w-12 h-12 text-secondary" />
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black text-border mb-6">
+                Ready to level up?
               </h2>
-              <p className="text-xl text-white/50 font-light leading-relaxed">
-                Beneath the surreal aesthetic lies a brutally efficient Prisma engine. The entire schema is mathematically optimized for real-time AI read/write operations.
+              <p className="text-2xl font-bold text-border/80 mb-10 max-w-xl mx-auto">
+                Join the platform and start your first AI-powered course today!
               </p>
-              <ul className="space-y-6 mt-12">
-                {['Prisma ORM Synchronization', 'Vercel Edge Network Ready', 'Type-Safe Data Mutations'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-lg font-light group">
-                    <div className="w-12 h-[1px] bg-white/20 group-hover:bg-white transition-colors"></div>
-                    <span className="group-hover:text-white text-white/60 transition-colors">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <Link href="/register" className="btn-edutech bg-primary text-white text-2xl py-5 px-12 group">
+                Let&apos;s Go!
+                <ArrowRight className="w-8 h-8 ml-2 group-hover:translate-x-2 transition-transform" />
+              </Link>
             </div>
-
-            <div className="flex-1 w-full relative">
-              {/* Floating Holographic Terminal */}
-              <div className="relative rounded-[2rem] border border-white/20 bg-black/50 backdrop-blur-3xl p-8 shadow-[0_0_100px_rgba(255,255,255,0.05)] transform rotate-y-[-10deg] rotate-x-[5deg] perspective-[1000px] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-1000">
-                <div className="flex items-center gap-3 mb-6 border-b border-white/10 pb-6">
-                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
-                  <div className="ml-auto text-xs font-mono text-white/30 uppercase tracking-widest">Sys_Terminal</div>
-                </div>
-                <pre className="font-mono text-sm leading-loose overflow-x-auto text-white/70">
-<span className="text-fuchsia-400">const</span> initNeuralLink <span className="text-cyan-400">=</span> <span className="text-fuchsia-400">async</span> () <span className="text-cyan-400">=&gt;</span> {'{'}
-  <span className="text-fuchsia-400">const</span> engine <span className="text-cyan-400">=</span> <span className="text-fuchsia-400">await</span> <span className="text-violet-400">Groq</span>.connect({'{'}
-    latency: <span className="text-green-400">&quot;zero&quot;</span>,
-    model: <span className="text-green-400">&quot;llama-3.3-70b&quot;</span>
-  {'}'});
-  
-  engine.<span className="text-violet-400">on</span>(<span className="text-green-400">&quot;data&quot;</span>, (stream) <span className="text-cyan-400">=&gt;</span> {'{'}
-    <span className="text-white/40">{"// Render cognitive output instantly"}</span>
-    UI.<span className="text-violet-400">inject</span>(stream);
-  {'}'});
-{'}'}
-                </pre>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-40 px-6 relative flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/5 pointer-events-none"></div>
-          <div className="relative z-10 text-center">
-            <h2 className="text-[8vw] sm:text-[6vw] font-black tracking-tighter leading-none mb-12 uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20">
-              Initialize.
-            </h2>
-            <Link href="/register" className="group relative inline-flex items-center justify-center px-12 py-5 font-bold text-black bg-white rounded-full overflow-hidden transition-all hover:scale-110 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_80px_rgba(255,255,255,0.5)]">
-              <span className="relative flex items-center gap-3 text-lg tracking-widest">
-                START SEQUENCE <Zap className="w-5 h-5 group-hover:scale-125 transition-transform" />
-              </span>
-            </Link>
           </div>
         </section>
       </main>
 
-      {/* Minimal Footer */}
-      <footer className="border-t border-white/5 py-12 px-6 relative z-10 bg-black">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-bold uppercase tracking-widest text-white/30">
-          <div>© {new Date().getFullYear()} EDUFLOW PROTOCOL</div>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Documentation</a>
-            <a href="https://github.com/mayank123hangsh00" className="hover:text-white transition-colors">GitHub Repository</a>
+      {/* Footer */}
+      <footer className="bg-border py-12 px-6 border-t-8 border-primary">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+              <BookOpen className="w-6 h-6 text-border" />
+            </div>
+            <span className="font-extrabold text-2xl text-white">EduFlow</span>
           </div>
-          <div>BUILT FOR HOUSE OF EDTECH</div>
+          
+          <div className="flex gap-6 font-bold text-white/70">
+            <a href="https://github.com/mayank123hangsh00" className="hover:text-white transition-colors">GitHub</a>
+            <a href="#" className="hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms</a>
+          </div>
+
+          <div className="font-bold text-white/50 bg-white/10 px-4 py-2 rounded-xl">
+            Built for House of Edtech
+          </div>
         </div>
       </footer>
     </div>
