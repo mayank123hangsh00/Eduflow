@@ -417,13 +417,12 @@ export default async function LandingPage() {
           </div>
 
           <div className="text-center text-sm text-muted-foreground">
-            <p>Developed by <span className="text-foreground font-medium">Your Name</span></p>
-            <p className="mt-1">Submission for House of Edtech — Fullstack Developer Assignment</p>
+            <p>Developed by <span className="text-foreground font-medium">Mayank Hangshoo</span></p>
           </div>
 
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/mayank123hangsh00"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -432,7 +431,7 @@ export default async function LandingPage() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/mayank-hangshoo-59037522a/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
