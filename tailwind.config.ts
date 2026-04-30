@@ -74,10 +74,38 @@ const config: Config = {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "aurora-1": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(5vw, -5vh) scale(1.1)" },
+          "66%": { transform: "translate(-2vw, 2vh) scale(0.9)" },
+        },
+        "aurora-2": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(-5vw, 3vh) scale(0.9)" },
+          "66%": { transform: "translate(2vw, -2vh) scale(1.1)" },
+        },
+        "aurora-3": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(2vw, 2vh) scale(1.1)" },
+          "66%": { transform: "translate(-3vw, -5vh) scale(0.9)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "reverse-spin": {
+          "0%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(0deg)" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.4s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
+        "aurora-1": "aurora-1 20s ease-in-out infinite",
+        "aurora-2": "aurora-2 25s ease-in-out infinite",
+        "aurora-3": "aurora-3 30s ease-in-out infinite",
+        "spin-slow": "spin-slow 15s linear infinite",
+        "reverse-spin": "reverse-spin 20s linear infinite",
       },
     },
   },
