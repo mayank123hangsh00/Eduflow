@@ -5,7 +5,6 @@ import {
   Brain,
   Sparkles,
   ArrowRight,
-  Shield,
   Zap,
   Globe2,
   Layers,
@@ -114,7 +113,7 @@ export default async function LandingPage() {
                   <Brain className="w-10 h-10 text-white/50 mb-6 group-hover:text-violet-400 transition-colors duration-500" />
                   <h3 className="text-3xl font-bold tracking-tight mb-4">Neural Grading Core</h3>
                   <p className="text-white/50 max-w-sm leading-relaxed font-light">
-                    Groq's LPU inference engine evaluates student input instantly, providing multi-dimensional feedback without latency.
+                    Groq&apos;s LPU inference engine evaluates student input instantly, providing multi-dimensional feedback without latency.
                   </p>
                 </div>
                 {/* Decorative element */}
@@ -197,12 +196,12 @@ export default async function LandingPage() {
                 <pre className="font-mono text-sm leading-loose overflow-x-auto text-white/70">
 <span className="text-fuchsia-400">const</span> initNeuralLink <span className="text-cyan-400">=</span> <span className="text-fuchsia-400">async</span> () <span className="text-cyan-400">=&gt;</span> {'{'}
   <span className="text-fuchsia-400">const</span> engine <span className="text-cyan-400">=</span> <span className="text-fuchsia-400">await</span> <span className="text-violet-400">Groq</span>.connect({'{'}
-    latency: <span className="text-green-400">"zero"</span>,
-    model: <span className="text-green-400">"llama-3.3-70b"</span>
+    latency: <span className="text-green-400">&quot;zero&quot;</span>,
+    model: <span className="text-green-400">&quot;llama-3.3-70b&quot;</span>
   {'}'});
   
-  engine.<span className="text-violet-400">on</span>(<span className="text-green-400">"data"</span>, (stream) <span className="text-cyan-400">=&gt;</span> {'{'}
-    <span className="text-white/40">// Render cognitive output instantly</span>
+  engine.<span className="text-violet-400">on</span>(<span className="text-green-400">&quot;data&quot;</span>, (stream) <span className="text-cyan-400">=&gt;</span> {'{'}
+    <span className="text-white/40">{"// Render cognitive output instantly"}</span>
     UI.<span className="text-violet-400">inject</span>(stream);
   {'}'});
 {'}'}
