@@ -56,6 +56,7 @@ async function main() {
       category: "Web Development",
       difficulty: "INTERMEDIATE",
       tags: ["react", "nextjs", "javascript", "frontend", "typescript"],
+      thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200&auto=format&fit=crop",
       published: true,
       price: 0,
       instructorId: instructor.id,
@@ -73,6 +74,7 @@ async function main() {
       category: "AI/ML",
       difficulty: "BEGINNER",
       tags: ["ai", "machine learning", "python", "neural networks", "nlp"],
+      thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop",
       published: true,
       price: 0,
       instructorId: instructor.id,
@@ -243,6 +245,68 @@ Custom hooks make complex logic reusable and keep components clean.`,
     },
   });
 
+  await prisma.module.upsert({
+    where: { id: "seed-module-ai1" },
+    update: {},
+    create: {
+      id: "seed-module-ai1",
+      title: "Introduction to Neural Networks",
+      description: "Understand the biological inspiration and mathematical foundation of artificial neural networks.",
+      content: `# Neural Networks: The Foundation of Modern AI
+
+Artificial Neural Networks (ANNs) are computing systems inspired by the biological neural networks that constitute animal brains.
+
+## The Perceptron
+The perceptron is the fundamental building block. It takes multiple inputs, applies weights to them, sums them up, and passes them through an activation function.
+
+### Key Components:
+1. **Inputs (x)**: The data fed into the network.
+2. **Weights (w)**: Parameters that the network learns during training.
+3. **Bias (b)**: A constant value added to shift the activation function.
+4. **Activation Function**: Introduces non-linearity (e.g., ReLU, Sigmoid).
+
+## Forward Propagation
+This is the process of pushing input data through the network to get a prediction. The matrix multiplication of inputs and weights happens at every layer until the final output is reached.
+
+## Backpropagation
+When the prediction is wrong, the network calculates the error (loss) and propagates this error *backwards* through the network, updating the weights using an optimization algorithm like Gradient Descent to minimize future errors.`,
+      order: 0,
+      duration: 35,
+      courseId: "seed-course-ai-001",
+    },
+  });
+
+  await prisma.module.upsert({
+    where: { id: "seed-module-ai2" },
+    update: {},
+    create: {
+      id: "seed-module-ai2",
+      title: "Large Language Models (LLMs)",
+      description: "Explore the architecture behind models like ChatGPT and LLaMA.",
+      content: `# Large Language Models
+
+LLMs are a type of neural network specifically designed to understand and generate human language.
+
+## The Transformer Architecture
+Introduced by Google in 2017 in the paper "Attention Is All You Need", Transformers revolutionized NLP.
+
+### Self-Attention Mechanism
+Unlike older models (RNNs) that processed text sequentially, self-attention allows the model to look at the *entire* sentence at once and weigh the importance of each word relative to all other words.
+
+For example, in "The bank of the river" vs "The bank on the corner", self-attention helps the model understand that "bank" means different things based on the surrounding words.
+
+## Tokenization
+LLMs don't read text; they read numbers. Tokenization is the process of breaking text down into chunks (tokens) and mapping them to numerical IDs.
+- "Hello" -> Token ID: 15496
+
+## Prompt Engineering
+Because LLMs predict the most likely next token, how you format your input (prompt) heavily dictates the quality of the output. Giving the model a persona, clear constraints, and examples (Few-Shot Prompting) yields much better results.`,
+      order: 1,
+      duration: 40,
+      courseId: "seed-course-ai-001",
+    },
+  });
+
   // Create enrollment for student
   await prisma.enrollment.upsert({
     where: { userId_courseId: { userId: student.id, courseId: reactCourse.id } },
@@ -254,6 +318,16 @@ Custom hooks make complex logic reusable and keep components clean.`,
     },
   });
 
+  await prisma.enrollment.upsert({
+    where: { userId_courseId: { userId: student.id, courseId: "seed-course-ai-001" } },
+    update: {},
+    create: {
+      userId: student.id,
+      courseId: "seed-course-ai-001",
+      progress: 10,
+    },
+  });
+
   console.log("✅ Seed complete!");
   console.log("\nDemo accounts:");
   console.log("  Admin:      admin@demo.com / demo1234");
@@ -262,6 +336,8 @@ Custom hooks make complex logic reusable and keep components clean.`,
   console.log("\nUse module IDs for AI Quiz:");
   console.log("  Module 1: seed-module-r1");
   console.log("  Module 2: seed-module-r2");
+  console.log("  Module 3: seed-module-ai1");
+  console.log("  Module 4: seed-module-ai2");
 }
 
 main()
