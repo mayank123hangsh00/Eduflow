@@ -1,9 +1,9 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
-import { Users, Shield, GraduationCap, BookOpen } from "lucide-react";
-import { formatDate } from "@/lib/utils";
+import { Users } from "lucide-react";
 import type { Metadata } from "next";
+import { UserRoleManager } from "@/components/admin/user-role-manager";
 
 export const metadata: Metadata = { title: "Manage Users | Admin" };
 
@@ -13,72 +13,58 @@ export default async function AdminUsersPage() {
 
   const users = await prisma.user.findMany({
     orderBy: { createdAt: "desc" },
-    include: {
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
       _count: { select: { enrollments: true, courses: true } },
     },
   });
 
+  const stats = {
+    total: users.length,
+    admins: users.filter((u) => u.role === "ADMIN").length,
+    instructors: users.filter((u) => u.role === "INSTRUCTOR").length,
+    students: users.filter((u) => u.role === "STUDENT").length,
+  };
+
   return (
     <div className="space-y-8 animate-fade-in">
-      <div>
-        <h1 className="text-3xl font-black mb-1">Platform Users</h1>
-        <p className="text-muted-foreground">Manage all students, instructors, and admins</p>
-      </div>
-
-      <div className="glass rounded-2xl border border-border overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="text-xs text-muted-foreground uppercase border-b border-border bg-secondary/30">
-                <th className="text-left p-4 pl-6">User</th>
-                <th className="text-left p-4">Role</th>
-                <th className="text-left p-4">Activity</th>
-                <th className="text-left p-4">Joined</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id} className="border-b border-border/50 hover:bg-secondary/50 transition-colors">
-                  <td className="p-4 pl-6">
-                    <div className="font-medium flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-brand-500/20 flex items-center justify-center text-xs font-bold text-brand-300">
-                        {user.name?.[0] || <Users className="w-4 h-4" />}
-                      </div>
-                      <div>
-                        <div>{user.name}</div>
-                        <div className="text-xs text-muted-foreground">{user.email}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <span className={`badge ${
-                      user.role === "ADMIN" ? "bg-red-500/10 text-red-500 border-red-500/20" : 
-                      user.role === "INSTRUCTOR" ? "bg-brand-500/10 text-brand-500 border-brand-500/20" : 
-                      "bg-blue-500/10 text-blue-500 border-blue-500/20"
-                    }`}>
-                      {user.role === "ADMIN" && <Shield className="w-3 h-3 mr-1" />}
-                      {user.role === "INSTRUCTOR" && <BookOpen className="w-3 h-3 mr-1" />}
-                      {user.role === "STUDENT" && <GraduationCap className="w-3 h-3 mr-1" />}
-                      {user.role}
-                    </span>
-                  </td>
-                  <td className="p-4">
-                    <div className="text-sm text-muted-foreground flex gap-3">
-                      {user.role === "INSTRUCTOR" && (
-                        <span title="Courses Created">{user._count.courses} courses</span>
-                      )}
-                      {(user.role === "STUDENT" || user.role === "ADMIN") && (
-                        <span title="Enrolled Courses">{user._count.enrollments} enrollments</span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="p-4 text-sm text-muted-foreground">{formatDate(user.createdAt)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Header */}
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-black mb-1 flex items-center gap-3">
+            <Users className="w-8 h-8 text-brand-400" />
+            Platform Users
+          </h1>
+          <p className="text-muted-foreground">
+            Manage roles for all students, instructors, and admins
+          </p>
         </div>
       </div>
+
+      {/* Summary stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: "Total Users", value: stats.total, color: "text-foreground bg-secondary" },
+          { label: "Admins", value: stats.admins, color: "text-red-400 bg-red-500/10" },
+          { label: "Instructors", value: stats.instructors, color: "text-brand-400 bg-brand-500/10" },
+          { label: "Students", value: stats.students, color: "text-blue-400 bg-blue-500/10" },
+        ].map((s) => (
+          <div key={s.label} className={`glass rounded-xl border border-border p-5 ${s.color}`}>
+            <div className="text-2xl font-black">{s.value}</div>
+            <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* User table with role management */}
+      <UserRoleManager
+        users={users}
+        currentSessionUserId={session.user.id}
+      />
     </div>
   );
 }
