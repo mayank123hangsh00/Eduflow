@@ -37,16 +37,6 @@ const roleConfig: Record<Role, { label: string; color: string; Icon: React.Eleme
   },
 };
 
-function RoleBadge({ role }: { role: Role }) {
-  const { label, color, Icon } = roleConfig[role];
-  return (
-    <span className={cn("badge flex items-center gap-1", color)}>
-      <Icon className="w-3 h-3" />
-      {label}
-    </span>
-  );
-}
-
 function UserRoleDropdown({ user, currentSessionUserId }: { user: User; currentSessionUserId: string }) {
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);

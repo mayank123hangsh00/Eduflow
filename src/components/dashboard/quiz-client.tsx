@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   Brain, ChevronRight, CheckCircle, XCircle, Loader2, RefreshCw,
   Trophy, Clock, BookOpen, ChevronDown, Sparkles, History, Play
@@ -242,6 +243,7 @@ export function QuizClientPage({
   const nextQuestion = () => {
     const newAnswers = [...state.answers, selectedAnswer ?? -1];
     if (state.currentQ + 1 >= state.questions.length) {
+      // eslint-disable-next-line react-hooks/purity
       const timeTaken = Math.round((Date.now() - state.startTime) / 1000);
       setState((s) => ({ ...s, answers: newAnswers, phase: "results", timeTaken }));
       saveAttempt(newAnswers, timeTaken);
@@ -309,7 +311,7 @@ export function QuizClientPage({
               <p className="text-sm text-muted-foreground mb-4">
                 Enroll in a course that has modules to start generating quizzes.
               </p>
-              <a href="/courses" className="btn-primary">Browse Courses</a>
+              <Link href="/courses" className="btn-primary">Browse Courses</Link>
             </div>
           ) : (
             <div className="glass rounded-2xl border border-border p-8 space-y-6">

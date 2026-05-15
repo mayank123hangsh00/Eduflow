@@ -3,11 +3,9 @@
 import { signOut } from "next-auth/react";
 import { Bell, LogOut, Search } from "lucide-react";
 import { getInitials } from "@/lib/utils";
-import { useState } from "react";
 import type { Session } from "next-auth";
 
 export function DashboardHeader({ user }: { user: Session["user"] }) {
-  const [searching, setSearching] = useState(false);
 
   return (
     <header className="h-16 glass-strong border-b border-border flex items-center px-6 gap-4">
@@ -19,8 +17,8 @@ export function DashboardHeader({ user }: { user: Session["user"] }) {
             type="text"
             placeholder="Search courses..."
             className="input-field pl-10 py-2 text-sm"
-            onFocus={() => setSearching(true)}
-            onBlur={() => setSearching(false)}
+            onFocus={() => {}}
+            onBlur={() => {}}
           />
         </div>
       </div>

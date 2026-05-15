@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { MotionDiv, MotionSection, MotionH1, MotionP } from "@/components/motion";
+import { MotionDiv, MotionH1, MotionP } from "@/components/motion";
 import {
   BookOpen,
   Brain,

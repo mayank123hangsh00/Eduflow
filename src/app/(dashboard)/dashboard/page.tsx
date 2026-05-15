@@ -54,10 +54,6 @@ export default async function DashboardPage() {
     enrollments.length > 0
       ? Math.round(enrollments.reduce((a, e) => a + e.progress, 0) / enrollments.length)
       : 0;
-  const avgScore =
-    recentAttempts.length > 0
-      ? Math.round(recentAttempts.reduce((a, q) => a + q.score, 0) / recentAttempts.length)
-      : 0;
 
   const stats = [
     { label: "Enrolled Courses", value: enrollments.length, icon: BookOpen, color: "text-brand-400 bg-brand-500/15" },

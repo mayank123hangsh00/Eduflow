@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db/prisma";
 import { redirect } from "next/navigation";
-import { getUsers } from "@/actions/users";
 import Link from "next/link";
 import { Users, BookOpen, Brain, Activity, TrendingUp, ShieldCheck } from "lucide-react";
 import { formatDate } from "@/lib/utils";

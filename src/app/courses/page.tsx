@@ -3,7 +3,6 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db/prisma";
 import Link from "next/link";
 import { BookOpen, Users, Clock, Search } from "lucide-react";
-import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Course Catalog" };
